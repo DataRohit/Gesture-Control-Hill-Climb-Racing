@@ -71,27 +71,23 @@ while True:
     # Counts the Number of Fingers Open
     count_fingers_open = fingers_open.count(1)
 
-    # Checking if Hand is Detected
-    if results.multi_hand_landmarks == None:
-        hand_detected = False
-    else:
-        hand_detected = True
+    # If Hand Detected
+    if results.multi_hand_landmarks != None:
+        # If All Fingers Closed --> Break
+        if count_fingers_open == 0:
+            cv.rectangle(image, (20, 300), (270, 425), (0, 255, 0), cv.FILLED)
+            cv.putText(image, "BRAKE", (45, 375), cv.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 5)
 
-    # If All Fingers Closed and Hand Detected --> Break
-    if count_fingers_open == 0 and hand_detected:
-        cv.rectangle(image, (20, 300), (270, 425), (0, 255, 0), cv.FILLED)
-        cv.putText(image, "BRAKE", (45, 375), cv.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 5)
+            keyboard.press(Key.left)
+            keyboard.release(Key.right)
 
-        keyboard.press(Key.left)
-        keyboard.release(Key.right)
+        # If All Fingers Open --> Gas
+        elif count_fingers_open == 5:
+            cv.rectangle(image, (20, 300), (270, 425), (0, 255, 0), cv.FILLED)
+            cv.putText(image, "GAS", (45, 375), cv.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 5)
 
-    # If All Fingers Open --> Gas
-    elif count_fingers_open == 5:
-        cv.rectangle(image, (20, 300), (270, 425), (0, 255, 0), cv.FILLED)
-        cv.putText(image, "GAS", (45, 375), cv.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 5)
-
-        keyboard.press(Key.right)
-        keyboard.release(Key.left)
+            keyboard.press(Key.right)
+            keyboard.release(Key.left)
 
     # If No Hand Detected
     else:
