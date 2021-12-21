@@ -3,5 +3,5 @@
 <h3>Opened Palm for Gas</h3>
 <img src="./gas.png" />
 <br/>
-<h3>Closed Palm for Gas</h3>
+<h3>Closed Palm for Brake</h3>
 <img src="./brake.png" />
