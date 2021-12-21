@@ -17,12 +17,6 @@ video = cv.VideoCapture(0)
 hands = mp_hand.Hands(min_detection_confidence = 0.5, min_tracking_confidence = 0.5)
 
 while True:
-    keyPressed = False
-    break_pressed = False
-    gas_pressed = False
-    key_count = 0
-    key_pressed = 0
-
     success, image = video.read()
 
     # Converting the Image to RGB
